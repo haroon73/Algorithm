@@ -1,0 +1,91 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+int dec(int num){
+    int n = 0;
+    int b = 1;
+    while(num > 0){
+        int r = num % 2;
+       n += r * b;
+       num /=2;
+       b *= 10;
+    }
+    return n;
+}
+
+vector<int> check(int num){
+    vector<int> v;
+    int b = 1;
+    int n;
+     while(num > 0){
+        
+         
+         v.push_back( num % 2);
+         num /= 2;
+        
+     }
+     return v;
+}
+
+int main() {
+    int decimal;
+    cout << "Enter a decimal number: ";
+    cin >> decimal;
+    string name;
+    vector<string> v2;
+    for(int i = 0 ; i < decimal ; i++){
+        cout << "enter cher ;" ;
+        cin >> name;
+        v2.push_back(name);
+    }
+    int n = pow(2 , decimal);
+     vector<int> v1 , v4 , v5;
+     
+    for(int i = 0 ; i < n ; i++){
+       
+         cout << i << ": ";
+        for(int j = decimal -1 ; j >= 0 ; --j){
+             vector <int> v3 = check(i);
+             int num = v3.size();
+            if(num < decimal ){
+                for(int k = num ; k < decimal ; k++){
+                    v3.push_back(0);
+                }
+            }
+           
+         
+               cout << v3[j] << " ";
+               v4.push_back(v3[j]);
+            
+           
+            v3.clear();
+        }
+        // for(int p = 0 ; p < v5.size() ; p++){
+        //     int num = v5[p];
+        //     cout << v2[num] << " ";
+        // }
+         for(int i = 0 ; i < v4.size() ; i++){
+             if(v4[i] == 1){
+                v5.push_back(i);
+            }
+           else if(v4[i] == 2){
+             cout << "empty";
+           }
+         }
+           cout <<":";
+           for(int l = 0 ; l < v5.size(); l++){
+               int num = v5[l];
+               cout << v2[num] << " ";
+           }
+        v4.clear();
+         v5.clear();
+       
+        cout << endl;
+    }
+    
+    
+    
+    return 0;
+}
